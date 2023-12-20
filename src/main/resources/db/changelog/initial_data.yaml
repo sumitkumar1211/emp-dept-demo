@@ -1,0 +1,140 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_default_departments
+      author: Sumit.Kumar
+      changes:
+        - insert:
+            tableName: DEPARTMENT
+            columns:
+              - column:
+                  name: ID
+                  valueSequenceNext: DEPARTMENT_SEQUENCE
+              - column:
+                  name: NAME
+                  value: 'Organization'
+              - column:
+                  name: READONLY
+                  value: true
+              - column:
+                  name: REQUIRED
+                  value: true
+
+        - insert:
+            tableName: DEPARTMENT
+            columns:
+              - column:
+                  name: ID
+                  valueSequenceNext: DEPARTMENT_SEQUENCE
+              - column:
+                  name: NAME
+                  value: 'HR'
+              - column:
+                  name: READONLY
+                  value: true
+              - column:
+                  name: REQUIRED
+                  value: false
+
+        - insert:
+            tableName: DEPARTMENT
+            columns:
+              - column:
+                  name: ID
+                  valueSequenceNext: DEPARTMENT_SEQUENCE
+              - column:
+                  name: NAME
+                  value: 'Accounting'
+              - column:
+                  name: READONLY
+                  value: false
+              - column:
+                  name: REQUIRED
+                  value: false
+
+  - changeSet:
+      id: insert_default_employees
+      author: Sumit.Kumar
+      changes:
+        - insert:
+            tableName: EMPLOYEE
+            columns:
+              - column:
+                  name: ID
+                  valueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+              - column:
+                  name: NAME
+                  value: 'Sumit Kumar'
+
+        - insert:
+            tableName: EMPLOYEE
+            columns:
+              - column:
+                  name: ID
+                  valueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+              - column:
+                  name: NAME
+                  value: 'Sunil Kumar'
+
+        - insert:
+            tableName: EMPLOYEE
+            columns:
+              - column:
+                  name: ID
+                  valueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+              - column:
+                  name: NAME
+                  value: 'Shyam Kumar'
+
+        - insert:
+            tableName: EMPLOYEE
+            columns:
+              - column:
+                  name: ID
+                  valueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+              - column:
+                  name: NAME
+                  value: 'Shivam Kumar'
+
+  - changeSet:
+      id: insert_default_map_employee_department
+      author: Sumit.Kumar
+      changes:
+        - insert:
+            tableName: MAP_EMPLOYEE_DEPARTMENT
+            columns:
+              - column:
+                  name: ID_EMPLOYEE
+                  valueComputed: "(SELECT ID FROM EMPLOYEE WHERE NAME = 'Sumit Kumar')"
+              - column:
+                  name: ID_DEPARTMENT
+                  valueComputed: "(SELECT ID FROM DEPARTMENT WHERE NAME = 'Organization')"
+
+        - insert:
+            tableName: MAP_EMPLOYEE_DEPARTMENT
+            columns:
+              - column:
+                  name: ID_EMPLOYEE
+                  valueComputed: "(SELECT ID FROM EMPLOYEE WHERE NAME = 'Sunil Kumar')"
+              - column:
+                  name: ID_DEPARTMENT
+                  valueComputed: "(SELECT ID FROM DEPARTMENT WHERE NAME = 'Organization')"
+
+        - insert:
+            tableName: MAP_EMPLOYEE_DEPARTMENT
+            columns:
+              - column:
+                  name: ID_EMPLOYEE
+                  valueComputed: "(SELECT ID FROM EMPLOYEE WHERE NAME = 'Shyam Kumar')"
+              - column:
+                  name: ID_DEPARTMENT
+                  valueComputed: "(SELECT ID FROM DEPARTMENT WHERE NAME = 'Organization')"
+
+        - insert:
+            tableName: MAP_EMPLOYEE_DEPARTMENT
+            columns:
+              - column:
+                  name: ID_EMPLOYEE
+                  valueComputed: "(SELECT ID FROM EMPLOYEE WHERE NAME = 'Shivam Kumar')"
+              - column:
+                  name: ID_DEPARTMENT
+                  valueComputed: "(SELECT ID FROM DEPARTMENT WHERE NAME = 'Organization')"

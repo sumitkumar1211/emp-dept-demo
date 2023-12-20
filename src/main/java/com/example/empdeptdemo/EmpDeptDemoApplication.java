@@ -1,0 +1,13 @@
+package com.example.empdeptdemo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class EmpDeptDemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(EmpDeptDemoApplication.class, args);
+	}
+
+}

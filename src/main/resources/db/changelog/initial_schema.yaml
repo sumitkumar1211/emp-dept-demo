@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_department_table
+      author: Sumit.Kumar
+      changes:
+        - createTable:
+            tableName: DEPARTMENT
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  defaultValueComputed: "NEXTVAL('DEPARTMENT_SEQUENCE')"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: VARCHAR(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: READONLY
+                  type: BOOLEAN
+                  defaultValue: false
+              - column:
+                  name: REQUIRED
+                  type: BOOLEAN
+                  defaultValue: false
+
+  - changeSet:
+      id: create_employee_table
+      author: Sumit.Kumar
+      changes:
+        - createTable:
+            tableName: EMPLOYEE
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  defaultValueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: create_map_employee_department_table
+      author: Sumit.Kumar
+      changes:
+        - createTable:
+            tableName: MAP_EMPLOYEE_DEPARTMENT
+            columns:
+              - column:
+                  name: ID_EMPLOYEE
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: PK_MAP_EMPLOYEE_DEPARTMENT
+                    foreignKeyName: FK_EMPLOYEE_ID
+                    references: EMPLOYEE(ID)
+                    onDelete: CASCADE
+                    #                    onUpdate: RESTRICT
+                    validate: true
+              - column:
+                  name: ID_DEPARTMENT
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: PK_MAP_EMPLOYEE_DEPARTMENT
+                    foreignKeyName: FK_DEPARTMENT_ID
+                    references: DEPARTMENT(ID)
+                    onDelete: CASCADE
+                    #                    onUpdate: RESTRICT
+                    validate: true
