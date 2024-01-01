@@ -114,6 +114,16 @@ databaseChangeLog:
             columns:
               - column:
                   name: ID_EMPLOYEE
+                  valueComputed: "(SELECT ID FROM EMPLOYEE WHERE NAME = 'Sumit Kumar')"
+              - column:
+                  name: ID_DEPARTMENT
+                  valueComputed: "(SELECT ID FROM DEPARTMENT WHERE NAME = 'HR')"
+
+        - insert:
+            tableName: MAP_EMPLOYEE_DEPARTMENT
+            columns:
+              - column:
+                  name: ID_EMPLOYEE
                   valueComputed: "(SELECT ID FROM EMPLOYEE WHERE NAME = 'Sunil Kumar')"
               - column:
                   name: ID_DEPARTMENT

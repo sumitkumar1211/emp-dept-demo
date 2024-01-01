@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/employees")
 @AllArgsConstructor
@@ -34,7 +35,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable final Long id) {
-        employeeService.deleteEmployee(id);
+    public Long deleteEmployee(@PathVariable final Long id) {
+        return employeeService.deleteEmployee(id);
     }
 }

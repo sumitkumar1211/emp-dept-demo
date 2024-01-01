@@ -31,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getEmployeeById(final Long id) {
         return employeeRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName(), ID, id));
+                .orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName(), ID, id));
     }
 
     @Override
@@ -49,12 +49,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(final Long id) {
+    public Long deleteEmployee(final Long id) {
         final Optional<Employee> employee = employeeRepository.findById(id);
         if (employee.isEmpty()) {
             throw new ResourceNotFoundException(Employee.class.getSimpleName(), ID, id);
         }
         employeeRepository.deleteById(id);
+        return id;
     }
 
     private Employee saveEmployee(final Employee employee) {
@@ -62,8 +63,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new IllegalArgumentException("name is null or empty");
         }
         final Set<Long> ids = employee.getDepartments().stream()
-            .map(Department::getId)
-            .collect(toSet());
+                .map(Department::getId)
+                .collect(toSet());
         if (departmentRepository.countAllByIdIn(ids) != ids.size()) {
             throw new ResourceNotFoundException(Department.class.getSimpleName(), ID, ids);
         }

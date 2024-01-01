@@ -2,6 +2,7 @@ package com.example.empdeptdemo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 @Table(name = "DEPARTMENT")
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEPARTMENT_SEQUENCE")
@@ -30,5 +32,6 @@ public class Department {
 
     @ManyToMany(mappedBy = "departments")
     @JsonIgnore
+    @EqualsAndHashCode.Exclude
     private Set<Employee> employees = new HashSet<>();
 }

@@ -13,5 +13,5 @@ public interface EmployeeService {
 
     Employee updateEmployee(final Employee employee);
 
-    void deleteEmployee(final Long id);
+    Long deleteEmployee(final Long id);
 }

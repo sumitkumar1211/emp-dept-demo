@@ -29,7 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Department getDepartmentById(final Long id) {
         return departmentRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException(Department.class.getSimpleName(), ID, id));
+                .orElseThrow(() -> new ResourceNotFoundException(Department.class.getSimpleName(), ID, id));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void deleteDepartment(final Long id) {
+    public Long deleteDepartment(final Long id) {
         Optional<Department> optionalDepartment = departmentRepository.findById(id);
         if (optionalDepartment.isEmpty()) {
             throw new ResourceNotFoundException(Department.class.getSimpleName(), ID, id);
@@ -62,8 +62,9 @@ public class DepartmentServiceImpl implements DepartmentService {
             throw new ResourceOperationNotAllowedException(DELETE, Department.class.getSimpleName(), ID, id);
         }
         department.getEmployees()
-            .forEach(emp -> emp.getDepartments().remove(department));
+                .forEach(emp -> emp.getDepartments().remove(department));
         departmentRepository.deleteById(id);
+        return id;
     }
 
     private Department saveDepartment(final AppOperation operation, final Department department) {
