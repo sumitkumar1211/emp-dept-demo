@@ -9,7 +9,7 @@ databaseChangeLog:
               - column:
                   name: ID
                   type: BIGINT
-                  defaultValueComputed: "NEXTVAL('DEPARTMENT_SEQUENCE')"
+                  defaultValueSequenceNext: DEPARTMENT_SEQUENCE
                   constraints:
                     primaryKey: true
                     nullable: false
@@ -38,7 +38,7 @@ databaseChangeLog:
               - column:
                   name: ID
                   type: BIGINT
-                  defaultValueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+                  defaultValueSequenceNext: EMPLOYEE_SEQUENCE
                   constraints:
                     primaryKey: true
                     nullable: false

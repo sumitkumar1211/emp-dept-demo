@@ -2,6 +2,7 @@ package com.example.empdeptdemo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Department {
     private Long id;
 
     @Column(name = "NAME", nullable = false, unique = true)
+    @NotBlank
     private String name;
 
     @Column(name = "READONLY")

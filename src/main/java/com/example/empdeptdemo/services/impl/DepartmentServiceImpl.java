@@ -15,6 +15,7 @@ import java.util.Optional;
 
 import static com.example.empdeptdemo.constant.AppConstants.*;
 import static com.example.empdeptdemo.constant.AppOperation.*;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Service
 @AllArgsConstructor
@@ -68,14 +69,20 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     private Department saveDepartment(final AppOperation operation, final Department department) {
-        if (UPDATE.equals(operation)) {
-            final Optional<Department> existingDepartment = departmentRepository.findByName(department.getName());
-            if (existingDepartment.isPresent() && existingDepartment.get().getId() != department.getId()) {
-                throw new ResourceAlreadyExistsException(Department.class.getSimpleName(), NAME, department.getName());
+        if (isBlank(department.getName())) {
+            throw new IllegalArgumentException(BLANK_NAME_MSG);
+        }
+        switch (operation) {
+            case UPDATE -> {
+                final Optional<Department> existingDepartment = departmentRepository.findByName(department.getName());
+                if (existingDepartment.isPresent() && existingDepartment.get().getId() != department.getId()) {
+                    throw new ResourceAlreadyExistsException(Department.class.getSimpleName(), NAME, department.getName());
+                }
             }
-        } else if (CREATE.equals(operation)) {
-            if (departmentRepository.existsByName(department.getName())) {
-                throw new ResourceAlreadyExistsException(Department.class.getSimpleName(), NAME, department.getName());
+            case CREATE -> {
+                if (departmentRepository.existsByName(department.getName())) {
+                    throw new ResourceAlreadyExistsException(Department.class.getSimpleName(), NAME, department.getName());
+                }
             }
         }
         return departmentRepository.save(department);

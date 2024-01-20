@@ -60,7 +60,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: ID
-                  valueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+                  valueSequenceNext: EMPLOYEE_SEQUENCE
               - column:
                   name: NAME
                   value: 'Sumit Kumar'
@@ -70,7 +70,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: ID
-                  valueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+                  valueSequenceNext: EMPLOYEE_SEQUENCE
               - column:
                   name: NAME
                   value: 'Sunil Kumar'
@@ -80,7 +80,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: ID
-                  valueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+                  valueSequenceNext: EMPLOYEE_SEQUENCE
               - column:
                   name: NAME
                   value: 'Shyam Kumar'
@@ -90,7 +90,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: ID
-                  valueComputed: "NEXTVAL('EMPLOYEE_SEQUENCE')"
+                  valueSequenceNext: EMPLOYEE_SEQUENCE
               - column:
                   name: NAME
                   value: 'Shivam Kumar'

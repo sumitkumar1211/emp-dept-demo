@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.example.empdeptdemo.constant.AppConstants.BLANK_NAME_MSG;
 import static com.example.empdeptdemo.constant.AppConstants.ID;
 import static java.util.stream.Collectors.toSet;
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -60,7 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private Employee saveEmployee(final Employee employee) {
         if (isBlank(employee.getName())) {
-            throw new IllegalArgumentException("name is null or empty");
+            throw new IllegalArgumentException(BLANK_NAME_MSG);
         }
         final Set<Long> ids = employee.getDepartments().stream()
                 .map(Department::getId)
